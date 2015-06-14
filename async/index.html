@@ -8,81 +8,126 @@
 	<link rel="stylesheet" href="node_modules/shower-ribbon/styles/screen.css">
 </head>
 <body class="list">
+  <style>
+    #Cover .bg {
+    width: 120%;
+    left: -10%;
+    top: -10%;
+    }
+
+    #Cover h2 {
+    color: whitesmoke;
+    margin:100px 0 0;
+    font-size:70px;
+    text-shadow: black 0 0 10px;
+    }
+
+    #Cover .sub {
+    margin: 10px 0 5px;
+    color: whitesmoke;
+    line-height: 1;
+    text-shadow: black 0 0 4px;
+    font-size: 30px;
+    }
+
+    .card {
+    position: absolute;
+    bottom: 0;
+    left: 12%;
+    min-width: 5.5em;
+    background: cadetblue;
+    color: white;
+    padding: .3em;
+    font-size: 50px;
+    box-shadow: black 0 0 10px;
+    }
+
+    .card .name {
+    display: inline-block;
+    vertical-align: top;
+    font-size: .3em;
+    line-height: 1.618;
+    }
+    .card.card .avatar.avatar { 
+    position: static;
+    display: inline-block;
+    vertical-align: top;
+    left: 0;
+    top: 0;
+    z-index: 0;
+    max-height: 2em;
+    border: 1px solid #ddd;
+    }
+    #Cover p a {
+    color:#FFF;
+    }
+    .arrow {
+    position: absolute;
+    }
+    .arrow::before {
+    content: '←';
+    padding-right: 5em;
+    position: absolute;
+    display: inline-block;
+    font-size: 2em;
+    }
+    .arrow1:before {
+    top: -16%;
+    right: 40%;
+    }
+    .arrow1 {
+    top: 40%;
+    right: 5%;
+    line-height: 1.2;
+    transform: rotate(-6deg);
+    }
+
+    .arrow2:before {
+    top: -60%;
+    left: -80%;
+    }
+    .arrow2 {
+    bottom: 20%;
+    right: 10%;
+    transform: rotate(11deg);
+    }
+    .arrow3:before {
+    left: -40%;
+    top: -54%;
+    }
+    .arrow3 {
+    right: 30%;
+    top: 10%;
+    transform: rotate(-10deg);
+    }
+
+  </style>
+
 	<header class="caption">
 		<h1>Асинхронность</h1>
 		<p>Javascript</p>
 	</header>
+
 	<section class="slide cover" id="Cover"><div>
 		<h2>А<span style="display: inline-block; margin: 0 0.05em; vertical-align: -.05em;">&#183;</span>синхронность</h2>
 		<p class="sub">или как я перестал бояться<br>и полюбил атомную бомбу</p>
 		<p class="card"><img src="pictures/marinintim.jpg" class="avatar"> <span class="name">Маринин Тимофей<br>@marinintim</span></p>
                 <img class="bg" src="pictures/1_death-motorcycle.jpg" alt="">
-		<style>
-                        #Cover .bg {
-                          width: 120%;
-			  left: -10%;
-			  top: -10%;
-                        }
-
-			#Cover h2 {
-			        color: whitesmoke;
-				margin:100px 0 0;
-				font-size:70px;
-			        text-shadow: black 0 0 10px;
-			}
-
-			#Cover .sub {
-				margin: 10px 0 5px;
-			        color: whitesmoke;
-			        line-height: 1;
-			        text-shadow: black 0 0 4px;
-			        font-size: 30px;
-			}
-
-			.card {
-			  position: absolute;
-			  bottom: 0;
-			  left: 12%;
-			  min-width: 5.5em;
-			  background: cadetblue;
-			  color: white;
-			  padding: .3em;
-			  font-size: 50px;
-			  box-shadow: black 0 0 10px;
-			}
-
-			.card .name {
-			  display: inline-block;
-			  vertical-align: top;
-			  font-size: .3em;
-			  line-height: 1.618;
-			}
-			.card.card .avatar.avatar { 
-			  position: static;
-			  display: inline-block;
-			  vertical-align: top;
-			  left: 0;
-			  top: 0;
-			  z-index: 0;
-			  max-height: 2em;
-			  border: 1px solid #ddd;
-			}
-			#Cover p a {
-			        color:#FFF;
-			}
-		</style>
 	</div></section>
+
 	<section class="slide"><div>
 	    <h2>Лексикон</h2>
 	    <ul>
 	      <li>Функции &mdash; объекты первого класса</li>
 	      <li>Анонимные функции</li>
 	      <li>Функции высшего порядка</li>
+	      <li>Стэк и event loop</li>
+	    </ul>
 	</div></section>
 
 	<section class="slide"><div>
 	    <h2>Объекты первого класса</h2>
-	    <p>Это то. что можно передавать в качестве аргументов.</p>
+	    <p>Это то, что можно передать в качестве аргументов.</p>
 	    <pre>
 	      <code>Math.sqrt(<mark>25</mark>); <em>//Числа</em></code>
 	      <code>arr.indexOf(<mark>'Hello world'</mark>); <em>//Строки</em></code>
@@ -107,8 +152,8 @@
 	    <h2>Функции высшего порядка</h2>
 	    <p>Принимают на вход другие функции.</p>
 	    <pre style="font-size: .7em">
-	      <code>[4, 8, 15, 16, 23, 42].filter(isEven) <em>// [4, 8, 16, 42]</em></code>
-	      <code>['hello', 'world'].map(upperCaser)</code>
+	      <code>[4, 8, 15, 16, 23, 42].filter<mark>(isEven)</mark> <em>// [4, 8, 16, 42]</em></code>
+	      <code>['hello', 'world'].map<mark>(upperCaser)</mark></code>
 	      <code>function isEven(n) { return n % 2 === 0 }</code>
 	      <code>function upperCaser(str) { return str.toUpperCase() }</code>
 	    </pre>
@@ -118,7 +163,7 @@
 	    <h2>Функции высшего порядка</h2>
 	    <p>Принимают на вход другие функции.</p>
 	    <pre style="font-size: .7em">
-	      <code>[4, 8, 15, 16, 23, 42].filter(function(x) {return x % 2; }) <em>// предикат</em></code>
+	      <code>[4, 8, 15, 16, 23, 42].filter(function(x) {return x % 2; }) <em class="note">// предикат</em></code>
 	      <code>['hello', 'world'].map(function(x) {</code>
 	      <code>  return x.toUpperCase();</code>
 	      <code>})  <em>// ['HELLO', 'WORLD' ]</em></code>
@@ -126,8 +171,21 @@
 	</div></section>
 
 	<section class="slide"><div>
-	    <h2></h2>
-	    <p></p>
+	    <h2>Стэк</h2>
+	    <p>Стопка контекстов выполнения. В контексте хранятся значения переменных.</p>
+	    <p>Вызов функции создаёт новый контекст. Когда функция закончилась, контекст выбрасывается.</p>
+	    <p>Большой, но не бесконечный. <a href="http://codepen.io/marinintim/full/xGdrej/">http://codepen.io/marinintim/full/xGdrej/</a></p>
+	</div></section>
+
+	<section class="slide"><div>
+	    <h2>event loop</h2>
+	    <p>Когда происходит <em>событие</em>, для которого есть обработчик, то обработчик добавляется в очередь на исполнение.</p>
+	    <pre>
+	      <code>// <strong>Очень</strong> упрощенно весь JS в браузере:</code>
+	      <code>while (c = getNextFromQueue()) {</code>
+	      <code>  execute(c)</code>
+	      <code>}</code>
+	      </pre>
 	</div></section>
 
 	<section class="slide"><div>
@@ -138,47 +196,9 @@
 	      <li class="next">Логика приложений сложнее императивного цикла <p class="note">Не представить в виде простой последовательности действий</p></li>
 	    </ul>
 	</div></section>
+
 	<section class="slide"><div>
 	    <style>
-	      .arrow {
-	        position: absolute;
-	      }
-	      .arrow::before {
-	        content: '←';
-	        padding-right: 5em;
-	        position: absolute;
-	        display: inline-block;
-	        font-size: 2em;
-	      }
-	      .arrow1:before {
-	        top: -16%;
-	        right: 40%;
-	      }
-	      .arrow1 {
-	        top: 40%;
-	        right: 5%;
-	        line-height: 1.2;
-	        transform: rotate(-6deg);
-	      }
-
-	      .arrow2:before {
-	        top: -60%;
-	        left: -80%;
-	      }
-	      .arrow2 {
-	        bottom: 20%;
-	        right: 10%;
-	        transform: rotate(11deg);
-	      }
-	      .arrow3:before {
-	        left: -40%;
-	        top: -54%;
-	      }
-	      .arrow3 {
-	        right: 30%;
-	        top: 10%;
-	        transform: rotate(-10deg);
-	      }
 	    </style>
 	    <script>
 	      colors = [ 'cadetblue', 'yellow', 'green', 'blanchedalmond', 'goldenrod', 'darkblue' ]
@@ -217,12 +237,12 @@
 	    <h2>Передача управления</h2>
 	    <p>Как-то попросить браузер исполнить, когда у него <em>будет время</em>.</p>
 	    <p class="next"><code style="font-size: 2em;">setTimeout(<mark>func</mark>, timeMs);</code></p>
-	    <p class="next">И злой брат-близнец <code>setInterval(<mark>func</mark>, timeMs);</code></p>
+	    <p class="next">А также злой брат-близнец <code>setInterval(<mark>func</mark>, timeMs);</code> и&nbsp;юный племянник <code>setImmediate(<mark>func</mark>)</code></p>
 	</div></section>
 
 	<section class="slide"><div>
 	    <h2>Передача управления</h2>
-	    <p class="next">Последовательность действий можно спрятать в функцию, а функцию отдать браузеру «на потом»</p>
+	    <p>Последовательность действий можно спрятать в функцию, а функцию отдать браузеру «на потом»</p>
 	    <pre class="next">
 	      <code>el.innerHTML = 'Привет!'</code>
 	      <code>setTimeout(function() {</code>
@@ -231,37 +251,29 @@
             </pre>
 	</div></section>
 
-
-
-	<section class="slide"><div>
-	    <h2>Стэк</h2>
-	    <p>Стопка контекстов</p>
-	    <p>Ограничен в размерах: <a href="http://codepen.io/marinintim/pen/xGdrej">codepen.io/marinintim/pen/xGdrej</a></p>
-	</div></section>
-
-	<section class="slide"><div>
-	    <h2>event loop</h2>
-	</div></section>
-
 	<section class="slide"><div>
 	    <h2>Коллбэки</h2>
 	    <pre>
-	      <code>fs.readFile(filename, function(err, res) {</code>
+	      <code><span style="color: gray;">fs.readFile(filename, </span>function(err, res) {</code>
 	      <code>  if (err) console.error('PANIC', err)</code>
 	      <code>  <em>// в res лежит результат</em></code>
 	      <code>  console.log(res)</code>
-	      <code>})</code>
+	      <code>}<span style="color: gray;">)</span></code>
 	    </pre>
 	</div></section>
 
 	<section class="slide"><div>
 	    <h2>Коллбэки</h2>
-	    <p>Обычные функции, вся соль &mdash; в их использовании. Код, который ждёт результатов <<заворачивается>> в коллбэк.</p>
-	    <p>Принято, что первый параметр &mdash; ошибка, второй &mdash; результат</p>
+	    <p>Обычные функции, вся соль &mdash; в их использовании. Код, который ждёт результатов «заворачивается» в коллбэк.</p>
+	    <div class="next">
+	      <p style="margin-bottom: 20px;">Отличается от <em>функций</em> тем, что обычно не возвращает значение, а&nbsp;передаёт управление.</p>
+	      <p class="note">В node.js принято, что один коллбэк для всего, первый параметр &mdash; ошибка, второй &mdash; результат, в jQuery разные коллбэки для ошибок и успеха.</p>
+	    </div>
 	</div></section>
 
 	<section class="slide"><div>
 	    <h2>Коллбэки</h2>
+	    <p>Как выглядит функция, которая принимает коллбэк?</p>
 	    <pre>
 	      <code>var myFunc = function(opts, cb) {</code>
 	      <code class="next">  // что-то делаем...</code>
@@ -310,6 +322,7 @@
 	    </pre>
 	    <p>Ничего не <em>напоминает</em>?</p>
 	</div></section>
+
 	<section class="slide cover"><div>
 	    <h2 class="next" style="position: absolute; bottom: 5%; font-size: 5em; color: whitesmoke; text-shadow: black 0 0 10px; left: 5%">Callback hell</h2>
 	    <img src="pictures/boticceli-dante.jpg" style="width: 110%; left: -5%;">
@@ -319,32 +332,46 @@
 	    <h2 style="z-index: 5; position: absolute; top: 10%; left: 10%;">Почему нельзя как в старые добрые времена?</h2>
 	    <img src="pictures/mask.jpg" style="width: 110%; position: absolute; top: -5%; left: -10%; z-index: 1; margin-right: 2em; float: left;">
 	</div></section>
+
 	<section class="slide shout"><div>
 	    <h2>Можно <span class="note next">(почти)</h2>
 	    <p class="next" style="position: absolute; bottom: 10%;">В язык встроены промисы, генераторы и async/await.</p>
 	</div></section>
 
 	<section class="slide cover shout"><div>
-	    <h2 style="color: cadetblue; position: absolute;text-shadow: black 0 0 50px;  top: 15%; left: 0; right: auto;">Промисы</h2>
+	    <h2 style="color: white; position: absolute; text-shadow: black 0 0 7px;  top: 15%; left: -10%; right: auto;">Промисы</h2>
 	    <img src="pictures/RP-P-OB-52.931.jpg" style="width: 120%; top: -20%; left: -10%;">
 	</div></section>
 
 	<section class="slide"><div>
 	    <h2>Промисы</h2>
-	    <p>Объект с методом <code>.then(onResolve, onError)</code></p>
-	    <pre style="font-size: 0.5em">
+	    <p>Объект с методом <code>.then(onResolve, onError)</code>.</p>
+	    <pre style="font-size: .5em; margin-bottom: 20px;">
 	      <code>function sendNotifications(id) {</code>
-	      <code>   var user = getUserById(id)</code>
-	      <code>   var notifications = user.then(getNotificationsByUser)</code>
-	      <code>   return notifications.then(function(noty) {</code>
-	      <code>     return noty.map(sendMain.bind(user))</code>
-	      <code>   })</code>
-	      <code>})</code>
-	    </pre>	
+	      <code>  var user = getUserById(id)</code>
+	      <code>  return user.then(getNotificationsByUser)</code>
+	      <code>             .then((noty) => Promise.all(noty.map(sendMail.bind(user))))</code>
+	      <code>}</code>
+	    </pre>
+            <p class="next">Функция возвращает промис, который <em>зарезолвится</em>, когда все письма будут отправлены.
+	                    <code>sendNotifications(1338).then(anotherFunc)</code></p>
 	</div></section>
+
+       <section class="slide"><div>
+	   <h2>Промисы</h2>
+	   
+       </div></section>
 
 	<section class="slide"><div>
 	    <h2>Промисы</h2>
+	    <p>Есть в современных браузерах, с библиотеками &mdash; во всех.</p>
+	    <p>Используются в PouchDB, jQuery, Fetch API, etc.</p>
+	    <p>Я перевел статью о типичных ошибках для Фронтира: <a href="http://frontiermag.ru/problem-with-promises.html">http://frontiermag.ru/problem-with-promises.html</a></p>
+	</div></section>
+
+	<section class="slide cover shout"><div>
+	    <h2 style="color: whitesmoke; text-shadow: black 0 0 20px; bottom: 0; left: -20%; top: auto;">Будущее</h2>
+	    <img src="pictures/future.jpg" style="width: 100%">
 	</div></section>
 
 	<section class="slide cover" style=""><div>
@@ -354,7 +381,52 @@
 	</div></section>
 
 	<section class="slide"><div>
+	    <h2>Генераторы</h2>
+	    <p>Изначально придуманы для итераторов (&asymp; для последовательного обхода структур), но подходят и для наших целей.</p>
+	    <pre style="font-size: .7em;">
+	      <code>function<mark>*</mark> hellogen() {</code>
+	      <code>  var a = 5</code>
+	      <code>  yield 'HELLO' // Отдали контроль обратно и передали 'HELLO'</code>
+	      <code>  yield 'WORLD'</code>
+	      <code>  return a // a всё ещё доступно, хотя мы дважды покидали функцию</code>
+	      <code>}</code>
+	    </pre>
+	</div></section>
+
+	<section class="slide"><div>
+	    <h2>Генераторы</h2>
+	    <pre>
+	      <code>gen = hellogen() // Объект с методом .next()</code>
+	      <code>console.log(gen.next()) // { value: 'HELLO', done: false }</code>
+	      <code>console.log(gen.next()) // { value: 'WORLD', done: false }</code>
+	      <code>console.log(gen.next()) // { value: 5, done: true } </code>
+	    </pre>
+	</div></section>
+
+	<section class="slide"><div>
+	    <h2>Генераторы</h2>
+	    <p style="margin-bottom: 20px;">Вместе с подходящей библиотекой, например, <code>co</code>, можно делать так</p>
+	    <pre>
+	      <code>co(function*() {</code>
+	      <code>  var user = yield getUserById(id)</code>
+	      <code>  var text = yield fetch('/blacklist')</code>
+	      <code>  var banned = text.split(' ')</code>
+	      <code>  if (user.name in banned) return 'you are banned!'</code>
+	      <code>  return 'welcome!'</code>
+	      <code>})</code>
+	    </pre>
+	</div></section>
+
+	<section class="slide"><div>
 	    <h2>async/await</h2>
+	    <pre>
+	      <code>async function getUserById(id) {</code>
+	      <code>  var hashed = hash(id)</code>
+	      <code>  var user = await db.request('users', hashed)</code>
+	      <code>  user.lastAccess = Date.now()</code>
+	      <code>  return user</code>
+	      <code>}</code>
+	    </pre>
 	</div></section>
 
 	<section class="slide"><div>
